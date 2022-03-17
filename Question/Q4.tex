@@ -11,15 +11,15 @@
 
 \begin{proof}
 We will encode the state of our circuit where the top wire is $\alpha$ and the bottom wire is $\beta$ as $\alpha \otimes \beta$.
-Therefore the \texttt{LHS} $C_{NOT}$ which we will call $C_{NOT}^L$ can be described by the matrix: 
+Therefore the \texttt{LHS} $C_{NOT}$ which we will call $C_{NOT}^L$ can be described by the unitary matrix: 
 \[
 C_{NOT}^L = \begin{pmatrix*}[r] 1&0&0&0 \\ 0&1&0&0 \\ 0&0&0&1\\0&0&1&0 \end{pmatrix*}
 \]
-And the \texttt{RHS} $C_{NOT}$ which we call $C_{NOT}^R$ can be described by the matrix:
+And the \texttt{RHS} $C_{NOT}$ which we call $C_{NOT}^R$ can be described by the unitary matrix:
 \[
 C_{NOT}^R = \begin{pmatrix*}[r] 1&0&0&0 \\ 0&0&0&1 \\ 0&0&1&0\\0&1&0&0 \end{pmatrix*}
 \]
-The \texttt{RHS} circuit can be described by the matrix:
+The \texttt{RHS} circuit can be described by the unitary matrix:
 \[
     \texttt{RHS} = C_{NOT}^R   
 \]
@@ -32,7 +32,7 @@ The \texttt{RHS} circuit can be described by the matrix:
     =&\frac{1}{2} \hmantwo
 \end{align*}
 
-\noindent Using $H_2$ the \texttt{LHS} circuit can be described by the matrix:
+\noindent Using $H_2$ the \texttt{LHS} circuit can be described by the unitary matrix:
 \begin{align*}
     &H_2 \cdot C_{NOT} \cdot H_2\\
     =& \frac{1}{2} H_2 \cdot  \begin{pmatrix*}[r] 1&0&0&0 \\ 0&1&0&0 \\ 0&0&0&1\\0&0&1&0 \end{pmatrix*}\hmantwo\\
