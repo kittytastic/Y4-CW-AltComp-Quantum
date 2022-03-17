@@ -1,0 +1,46 @@
+\newcommand{\hman}{\begin{pmatrix*}[r] 1 &1\\ 1&-1\end{pmatrix*}}
+\newcommand{\bhman}{\begin{bmatrix*}[r] 1 &1\\ 1&-1\end{bmatrix*}}
+
+\newcommand{\hmantwo}{\begin{pmatrix*}[r] 1&1&1&1 \\ 1&-1&1&-1 \\ 1&1&-1&-1\\1&-1&-1&1 \end{pmatrix*}}
+
+\newcommand{\tallcols}[2]{\begingroup % keep the change local
+\renewcommand*{\arraystretch}{#1}#2\endgroup}
+
+\newcommand{\normrows}[1]{\begingroup % keep the change local
+\renewcommand*{\arraystretch}{1.0}#1\endgroup}
+
+\begin{proof}
+We will encode the state of our circuit where the top wire is $\alpha$ and the bottom wire is $\beta$ as $\alpha \otimes \beta$.
+Therefore the \texttt{LHS} $C_{NOT}$ which we will call $C_{NOT}^L$ can be described by the matrix: 
+\[
+C_{NOT}^L = \begin{pmatrix*}[r] 1&0&0&0 \\ 0&1&0&0 \\ 0&0&0&1\\0&0&1&0 \end{pmatrix*}
+\]
+And the \texttt{RHS} $C_{NOT}$ which we call $C_{NOT}^R$ can be described by the matrix:
+\[
+C_{NOT}^R = \begin{pmatrix*}[r] 1&0&0&0 \\ 0&0&0&1 \\ 0&0&1&0\\0&1&0&0 \end{pmatrix*}
+\]
+The \texttt{RHS} circuit can be described by the matrix:
+\[
+    \texttt{RHS} = C_{NOT}^R   
+\]
+
+\noindent Let us define $H_2$ as the Hadamard gate on 2 qubits:
+\begin{align*}
+    H_2 =& H \otimes H\\
+    =&\frac{1}{\sqrt{2}}\hman \otimes \frac{1}{\sqrt{2}}\hman\\
+    =&\frac{1}{\sqrt{2}}^2 \tallcols{2.1}{\begin{pmatrix*}[r] 1 \normrows{\bhman} & 1\normrows{\bhman} \\ 1 \normrows{\bhman} & -1 \normrows{\bhman} \end{pmatrix*}}\\
+    =&\frac{1}{2} \hmantwo
+\end{align*}
+
+\noindent Using $H_2$ the \texttt{LHS} circuit can be described by the matrix:
+\begin{align*}
+    &H_2 \cdot C_{NOT} \cdot H_2\\
+    =& \frac{1}{2} H_2 \cdot  \begin{pmatrix*}[r] 1&0&0&0 \\ 0&1&0&0 \\ 0&0&0&1\\0&0&1&0 \end{pmatrix*}\hmantwo\\
+    =&\frac{1}{2} H_2 \cdot \begin{pmatrix*}[r] 1&1&1&1 \\ 1&-1&1&-1 \\ 1&-1&1&-1\\1&-1&-1&1 \end{pmatrix*}\\
+    =&\frac{1}{4} \hmantwo \begin{pmatrix*}[r] 1&1&1&1 \\ 1&-1&1&-1 \\ 1&-1&1&-1\\1&-1&-1&1 \end{pmatrix*}\\
+    =&\frac{1}{4} \begin{pmatrix*}[r] 4&0&0&0 \\ 0&0&0&4 \\ 0&0&4&0\\0&4&0&0 \end{pmatrix*}\\
+    =&\begin{pmatrix*}[r] 1&0&0&0 \\ 0&0&0&1 \\ 0&0&1&0\\0&1&0&0 \end{pmatrix*}
+\end{align*}
+
+\noindent We observe that $\texttt{LHS}=\texttt{RHS}$
+\end{proof}
