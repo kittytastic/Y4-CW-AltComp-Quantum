@@ -35,4 +35,83 @@ We can then reduce Equation \ref{eq:def} as follows
 
 As Equation \ref{eq:pl_aa} and \ref{eq:pl_ba} are only satisfied in the case $\alpha=0, \beta=1$ or $\alpha=1, \beta=0$ we have reached a contradiction and no such unitary transform can exist.
 
-\subsection{Generalization}
+\subsection{Generalization 1}
+We will now generalize the proof to show you cannot clone an arbitrary qubit 1 or more times.
+
+Assume there is a unitary transform $U$ that can clone an arbitrary bit $\psi$ m times, i.e.
+\begin{equation}\label{eq:def_b}
+\ket{\psi}^{\otimes n} \otimes \ket{0}^{\otimes m} \xrightarrow{U} \ket{\psi}^{\otimes n+m}
+\end{equation}
+
+We know that for classical bits it must be the case that:
+
+\begin{align}
+    \ket{0}^{\otimes n} \otimes \ket{0}^{\otimes m} &\xrightarrow{U} \ket{0}^{\otimes n+m}\\
+    =\ket{0^n 0^m} &\xrightarrow{U} \ket{0^ {n+m}} \label{eq:lin_ab}
+\end{align}
+\begin{align}
+    \ket{1}^{\otimes n} \otimes \ket{0}^(\otimes m) &\xrightarrow{U} \ket{1}^{\otimes n+m}\\
+    =\ket{1^n 0^m} &\xrightarrow{U} \ket{1^ {n+m}} \label{eq:lin_bb}
+\end{align}
+
+We can then reduce Equation \ref{eq:def_b} as follows
+\begin{align*}
+    \ket{\psi}^{\otimes n} \otimes \ket{0}^{\otimes m} &\xrightarrow{U} \ket{\psi}^{\otimes n+m}\\
+    (\alpha \ket{0} + \beta \ket{1})^{\otimes n} \otimes \ket{0^m} &\xrightarrow{U} (\alpha \ket{0} + \beta \ket{1})^{\otimes n+m}\\
+    %\shortintertext{Focusesing only on a subset of states}
+    (\alpha^n \ket{0^n} + \beta^n \ket{1^n} + \ldots) \otimes \ket{0^m} &\xrightarrow{U} \alpha^{n+m} \ket{0^{n+m}} + \beta^{n+m} \ket{1^{n+m}} + \ldots\\
+    \alpha^n \ket{0^n0^m} + \beta^n \ket{1^n0^m} + \ldots  &\xrightarrow{U} \alpha^{n+m} \ket{0^{n+m}} + \beta^{n+m} \ket{1^{n+m}} + \ldots
+    \shortintertext{By linearity}
+    \alpha^n U \ket{0^n0^m} + \beta^n  U \ket{1^n0^m} + \ldots &= \alpha^{n+m} \ket{0^{n+m}} + \beta^{n+m} \ket{1^{n+m}} + \ldots\\
+    \shortintertext{Using equation \ref{eq:lin_ab} and \ref{eq:lin_bb}}
+    \alpha^n \ket{0^n0^m} + \beta^n  \ket{1^n1^m} + \ldots &= \alpha^{n+m} \ket{0^{n+m}} + \beta^{n+m} \ket{1^{n+m}} + \ldots
+\end{align*}
+\begin{align}    
+    \shortintertext{Hence}
+\alpha^n &= \alpha^{n+m} \label{eq:pl_ab} \\
+    \beta^n &= \beta^{n+m} \label{eq:pl_bb}
+\end{align}
+
+As Equation \ref{eq:pl_ab} and \ref{eq:pl_bb} are only satisfied in the case $\alpha=0, \beta=1$ or $\alpha=1, \beta=0$ we have reached a contradiction and no such unitary transform can exist.
+
+
+\subsection{Generalization 2}
+We will also generalize the first proof to show you cannot clone an arbitrary qubit onto any qubit, not just $\ket{0}$. 
+
+Assume there is a unitary transform $U$ that can clone an arbitrary bit $\psi$ onto any bit $e$.
+\begin{equation}\label{eq:def_c}
+\ket{\psi}^{\otimes n} \otimes \ket{e} \xrightarrow{U} \ket{\psi}^{\otimes n+1}
+\end{equation}
+
+Let $\ket{e} = x\ket{0} + y\ket{1}$. 
+We know that for classical bits it must be the case that:
+
+\begin{align}
+    \ket{0}^{\otimes n} \otimes \ket{e} &\xrightarrow{U} \ket{0}^{\otimes n+1}\\
+    =x\ket{0^n0} + y\ket{0^n1} &\xrightarrow{U} \ket{0^ {n+1}} \label{eq:lin_ac}
+\end{align}
+\begin{align}
+    \ket{1}^{\otimes n} \otimes \ket{0} &\xrightarrow{U} \ket{1}^{\otimes n+1}\\
+    =x\ket{1^n0} + y\ket{1^n1}&\xrightarrow{U} \ket{1^ {n+1}} \label{eq:lin_bc}
+\end{align}
+
+We can then reduce Equation \ref{eq:def_c} as follows
+\begin{align*}
+    \ket{\psi}^{\otimes n} \otimes \ket{e} &\xrightarrow{U} \ket{\psi}^{\otimes n+1}\\
+    (\alpha \ket{0} + \beta \ket{1})^{\otimes n} \otimes \ket{e} &\xrightarrow{U} (\alpha \ket{0} + \beta \ket{1})^{\otimes n+1}\\
+    %\shortintertext{Focusesing only on a subset of states}
+    (\alpha^n \ket{0^n} + \beta^n \ket{1^n} + \ldots) \otimes \ket{e} &\xrightarrow{U} \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots\\
+    \alpha^n x \ket{0^n0} + \alpha^n  y \ket{0^n1} + \beta^n x\ket{1^n0}+ \beta^n y\ket{1^n1}+ \ldots  &\xrightarrow{U} \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots
+    \shortintertext{By linearity}
+    \alpha^n x U \ket{0^n0} + \alpha^n  y U \ket{0^n1} + \beta^n x U\ket{1^n0} + \beta^n y U\ket{1^n1}+ \ldots  &\xrightarrow{U} \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots\\
+    \alpha^n U(x\ket{0^n0} + y \ket{0^n1}) + \beta^n U(x \ket{1^n0} + y \ket{1^n1})+ \ldots  &\xrightarrow{U} \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots
+    \shortintertext{Using equation \ref{eq:lin_ac} and \ref{eq:lin_bc}}
+    \alpha^n \ket{0^n0} + \beta^n  \ket{1^n1} + \ldots &= \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots
+\end{align*}
+\begin{align}    
+    \shortintertext{Hence}
+\alpha^n &= \alpha^{n+1} \label{eq:pl_ac} \\
+    \beta^n &= \beta^{n+1} \label{eq:pl_bc}
+\end{align}
+
+As Equation \ref{eq:pl_ac} and \ref{eq:pl_bc} are only satisfied in the case $\alpha=0, \beta=1$ or $\alpha=1, \beta=0$ we have reached a contradiction and no such unitary transform can exist.
