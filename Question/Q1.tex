@@ -1,7 +1,38 @@
-\subsection{This is a part}
-\subsubsection{This is a part of a part}
-\subsubsection{This is a part of a part}
+\subsection{Base Proof}
+Assume there is a unitary transform $U$ that can clone an arbitrary bit $\psi$, i.e.
+\begin{equation}\label{eq:def}
+\ket{\psi}^{\otimes n} \otimes \ket{0} \xrightarrow{U} \ket{\psi}^{\otimes n+1}
+\end{equation}
 
-\subsection{This is a part}
-\subsubsection{This is a part of a part}
-\subsubsection{This is a part of a part}
+We know that for classical bits it must be the case that:
+
+\begin{align}
+    \ket{0}^{\otimes n} \otimes \ket{0} &\xrightarrow{U} \ket{0}^{\otimes n+1}\\
+    =\ket{0^n0} &\xrightarrow{U} \ket{0^ {n+1}} \label{eq:lin_aa}
+\end{align}
+\begin{align}
+    \ket{1}^{\otimes n} \otimes \ket{0} &\xrightarrow{U} \ket{1}^{\otimes n+1}\\
+    =\ket{1^n0} &\xrightarrow{U} \ket{1^ {n+1}} \label{eq:lin_ba}
+\end{align}
+
+We can then reduce Equation \ref{eq:def} as follows
+\begin{align*}
+    \ket{\psi}^{\otimes n} \otimes \ket{0} &\xrightarrow{U} \ket{\psi}^{\otimes n+1}\\
+    (\alpha \ket{0} + \beta \ket{1})^{\otimes n} \otimes \ket{0} &\xrightarrow{U} (\alpha \ket{0} + \beta \ket{1})^{\otimes n+1}\\
+    %\shortintertext{Focusesing only on a subset of states}
+    (\alpha^n \ket{0^n} + \beta^n \ket{1^n} + \ldots) \otimes \ket{0} &\xrightarrow{U} \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots\\
+    \alpha^n \ket{0^n0} + \beta^n \ket{1^n0} + \ldots  &\xrightarrow{U} \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots
+    \shortintertext{By linearity}
+    \alpha^n U \ket{0^n0} + \beta^n  U \ket{1^n0} + \ldots &= \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots\\
+    \shortintertext{Using equation \ref{eq:lin_aa} and \ref{eq:lin_ba}}
+    \alpha^n \ket{0^n0} + \beta^n  \ket{1^n1} + \ldots &= \alpha^{n+1} \ket{0^{n+1}} + \beta^{n+1} \ket{1^{n+1}} + \ldots
+\end{align*}
+\begin{align}    
+    \shortintertext{Hence}
+\alpha^n &= \alpha^{n+1} \label{eq:pl_aa} \\
+    \beta^n &= \beta^{n+1} \label{eq:pl_ba}
+\end{align}
+
+As Equation \ref{eq:pl_aa} and \ref{eq:pl_ba} are only satisfied in the case $\alpha=0, \beta=1$ or $\alpha=1, \beta=0$ we have reached a contradiction and no such unitary transform can exist.
+
+\subsection{Generalization}
