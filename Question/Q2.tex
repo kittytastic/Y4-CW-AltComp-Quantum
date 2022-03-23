@@ -1,0 +1,10 @@
+Let the player's strategy be to guess the first bit if they measure 0 and guess the second bit if they message 1.
+\begin{align*}
+    P(\text{correct}) &= 1-P(\text{incorrect})\\
+        &= 1-(\frac{1}{2}(1-\beta^2))\\
+        &= 1-\frac{1}{2} + \frac{\beta^2}{2}\\
+        &= \frac{1}{2} + \frac{\beta^2}{2}\\
+\end{align*}
+
+Therefore their advantage is 
+\[\frac{\beta^2}{2} = \Omega(\beta^2)\]
