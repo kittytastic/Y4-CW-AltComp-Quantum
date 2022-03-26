@@ -1,29 +1,32 @@
 Let the player's strategy be to guess the first bit if they measure 0 and guess the second bit if they message 1.
 \begin{align*}
     P(\text{correct}) &= 1-P(\text{incorrect})\\
-        &= 1-(\frac{1}{2}(1-\beta^2))\\
-        &= 1-\frac{1}{2} + \frac{\beta^2}{2}\\
-        &= \frac{1}{2} + \frac{\beta^2}{2}\\
+        &= 1-(\frac{1}{2}(1-|\beta|^2))\\
+        &= 1-\frac{1}{2} + \frac{|\beta|^2}{2}\\
+        &= \frac{1}{2} + \frac{|\beta|^2}{2}\\
 \end{align*}
 
 Therefore their advantage is 
-\[\frac{\beta^2}{2} = \Omega(\beta^2)\]
+\[\frac{|\beta|^2}{2} = \Omega(|\beta|^2)\]
 
 
 \subsection{}
 We will call the first bit $Q_0$ and the second bit $Q_1$
-Let us offset out measuring basis by $-\frac{pi}{4}$, we will use $\ket{0'},\ket{1'}$ as new basis vectors where $\ket{0'}$ is the rotation of the $\ket{0}$ basis and likewise for $\ket{y}$.
+Let us offset our measuring basis by $-\frac{\pi}{4}$, we will use $\ket{0'},\ket{1'}$ as new basis vectors where $\ket{0'}$ is the rotation of the $\ket{0}$ basis and likewise for $\ket{1}$.
 Let $m$ be the measuring function that returns the probability of measuring a qubit in a given state in our new basis.
 
-%\begin{center}
+\begin{center}
+   \newcommand\T{\rule{0pt}{5ex}}       % Top strut
+\newcommand\B{\rule[-5ex]{0pt}{0pt}}
+\setlength\extrarowheight{3pt}
 \begin{tabular}{lll}
     \toprule
 Qubit& State&$m(\text{Qubit}, \text{ State})$\\
 \midrule
-$Q_0$&$\ket{0'}$&$\begin{aligned}\phantom{ }&\cos^2(\frac{\pi}{4})\\=&\frac{q}{2}\end{aligned}$\\
-\hline
+\addlinespace[2ex]$Q_0$&$\ket{0'}$&$\begin{aligned}\phantom{ }&\cos^2(\frac{\pi}{4})\\=&\frac{q}{2}\end{aligned}$\\
+\specialrule{0.5pt}{1ex}{1ex}
 $Q_0$&$\ket{1'}$&$\begin{aligned}\phantom{ }&\sin^2(\frac{\pi}{4})\\=&\frac{q}{2}\end{aligned}$\\
-\hline
+\specialrule{0.5pt}{1ex}{1ex}
 $Q_1$&$\ket{0'}$&$
     \begin{aligned}
         \phantom{ }&\cos^2(\frac{\pi}{4}+\theta)\\
@@ -33,7 +36,7 @@ $Q_1$&$\ket{0'}$&$
         =&\frac{1}{2}(1 - 2\cos\theta \sin\theta)\\
         =&\frac{1}{2} - \cos\theta \sin\theta
     \end{aligned}$\\
-\hline
+\specialrule{0.5pt}{1ex}{1ex}
     $Q_1$&$\ket{1'}$&$
     \begin{aligned}
         \phantom{ }&\sin^2(\frac{\pi}{4}+\theta)\\
@@ -45,7 +48,7 @@ $Q_1$&$\ket{0'}$&$
     \end{aligned}$\\
     \bottomrule
 \end{tabular}
-%\end{center}
+\end{center}
 
 
 Our player will guess $Q_0$ if they measure a $\ket{0'}$ and guess $Q_1$ if they measure a $\ket{1'}$.
@@ -54,15 +57,15 @@ Our player will guess $Q_0$ if they measure a $\ket{0'}$ and guess $Q_1$ if they
     p(\text{correct}) &= \frac{1}{2} m(Q_0, \ket{0'}) + \frac{1}{2} m(Q_1, \ket{1'})\\
      &= \frac{1}{2}\cdot \frac{1}{2} + \frac{1}{2} (\frac{1}{2} \cos\theta \sin\theta)\\
      &= \frac{1}{2} + \frac{1}{2} \cos\theta \sin\theta\\
-     &= \frac{1}{2} + \frac{1}{2} \alpha \beta\\
-     &= \frac{1}{2} + \frac{1}{2} \sqrt{1-\beta^2} \beta\\
-     &= \frac{1}{2} + \frac{1}{2} \sqrt{\beta^2-\beta^4}\\
-     &= \frac{1}{2} + \frac{1}{2} \Omega(\sqrt{\frac{\beta^2}{4}})\\
-     &= \frac{1}{2} + \frac{1}{2} \Omega(\beta)\\
-     &= \frac{1}{2} + \Omega(\beta)\\
+     &= \frac{1}{2} + \frac{1}{2} |\alpha| |\beta|\\
+     &= \frac{1}{2} + \frac{1}{2} \sqrt{1-|\beta|^2} |\beta|\\
+     &= \frac{1}{2} + \frac{1}{2} \sqrt{|\beta|^2-|\beta|^4}\\
+     &= \frac{1}{2} + \frac{1}{2} \Omega(\sqrt{\frac{|\beta|^2}{4}})\\
+     &= \frac{1}{2} + \frac{1}{2} \Omega(|\beta|)\\
+     &= \frac{1}{2} + \Omega(|\beta|)\\
 \end{align*}
 
 Hence the advantage is
 \[
-    \Omega(\beta)
+    \text{Advantage}=\Omega(|\beta|)
 \]
