@@ -1,0 +1,44 @@
+There are 2 key properties of ERP pairs.
+1) You cannot know the value of the first measured bit will take until it is measured.
+2) Once you know the value of the first measured bit you know the value of the 2nd bit.
+wlog. We our EPR pair will be the Bell state $\ket{\phi^+}= \frac{1}{\sqrt{2}}|00> + \frac{1}{\sqrt{2}}|11> $ for some basis $\ket{0}, \ket{1}$.
+
+\begin{proof} 1) You cannot know the value of the first measured bit will take until it is measured.
+
+    If you measure the first bit $q_0$ the $p(q_0=\ket{0}) = \frac{1}{\sqrt{2}}^2 = \frac{1}{2}$, and likewise for $q_1$.
+    For both qubits if they are measured first then there is an equal probability of observing $\ket{0}, \ket{1}$.
+    Hence you cannot know the value of the first qubit until it is measured.
+\end{proof}
+
+\begin{proof} 2) Once you know the value of the first measured bit you know the value of the 2nd bit.
+
+In our system if we know that $q_0=\ket{0}$ then we know the state of the whole system cannot be $\ket{11}$.
+There is only one other state with non-zero probability $\ket{00}$, hence we know $q_1=\ket{0}$.
+We can make a similar argument of we the value of $q_1$.
+
+Therefore, once the value of the first qubit is known so to is the value of the second qubit.
+\end{proof}
+
+
+
+
+\begin{proof} No-telepathy
+
+
+    Let us assume that Bob has a function $B$ that processes and measures his qubit $q_b$ to return a guess $x'$ that is always equivalent to Alice's random number $x$.
+Alice and Bob cannot communicate so $B$ is only a function of $q_b$.
+As $x'$ is deterministic it must also mean $B$ is deterministic where a set of inputs $X_0$ under $B$ map to $x'=0$ and a set of inputs $X_1$ under $B$ map to $x'=1$.
+The super position of the entangled pair must include states that are in both $X_0$ and $X_1$ otherwise Bobs output would always be the same and there is no way for Alice to communicate to Bob.
+
+By the first property of ERP pairs, if Bob were to measure $q_b$ first he cannot determine the value of $q_b$ hence $q_b\in X_0 \cup X_1$ and the value of $B$ would be non-deterministic.
+Therefore Bob cannot measure first, he must measure after Alice.
+
+
+By the second property of EPR pairs once the first qubit has been measured the value of the second qubit is known.
+So for Alice to communicate with Bob she must influence the state of her qubit $q_a$ so that the state of $q_b$ falls into the correct set for Bob.
+
+The manipulation of $q_a$ to an acceptable state implies it is in a known state or set of states.
+If we know the state of a qubit it must be the case we can describe it in the form $\alpha \ket{b_1} + \beta \ket{b_2}$.
+However, for qubits to be entangled it must be the case that it is imposible to describe the state of one qubit in isolation.
+Hence we have reached a contradiction.
+\end{proof}
