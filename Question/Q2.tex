@@ -75,8 +75,8 @@ Hence the advantage is
 
 \subsection{}
 Firstly, we will continue the use of $\ket{0'}$ and $ket{1'}$ as basis vectors where $\ket{0'}$ is a rotation of $\ket{0}$ by $-\delta$ radians, and likewise of $\ket{1'}$ and $\ket{1}$.
-wlog $0 \leq \delta \leq \frac{\pi}{4}$.
-In the context the 2 qubits $Q_0$ and $Q_1$ allowing $\delta>\frac{\pi}{4}$ will only generate rotationally symmetrical solutions to the solution in the range $0 \leq \delta \leq \frac{\pi}{4}$.
+wlog $0 \leq \Delta \leq \frac{\pi}{4}$.
+In the context the 2 qubits $Q_0$ and $Q_1$ allowing $\Delta>\frac{\pi}{4}$ will only generate rotationally symmetrical solutions to the solution in the range $0 \leq \Delta \leq \frac{\pi}{4}$.
 Therefore this restriction can be made wlog.
 Let $m$ be the measuring function that outputs the probability of measuring a state for a given qubit the basis $\ket{0'}, \ket{1'}$ 
 
@@ -85,7 +85,7 @@ Let the greedy strategy be: When we measure the unknown qubit $Q_?$, if we obser
 
 We will look at the cases where measuring $Q_?$ gives state $\ket{1'}$.
 The same argument can be applied to the case where $\ket{0'}$ is measured.
-Thanks to our restriction of $\delta$, we know that $m(Q_1, \ket{1'})\geq m(Q_0, \ket{1'})$ and also that $p(Q_1|\ket{1'}) \geq p(Q_0|ket{1'})$.
+Thanks to our restriction of $\Delta$, we know that $m(Q_1, \ket{1'})\geq m(Q_0, \ket{1'})$ and also that $p(Q_1|\ket{1'}) \geq p(Q_0|ket{1'})$.
 Let $p(Q? = Q_1) = p(Q_1|\ket{1'}) = x$ and $p(Q? = Q_0) = p(Q_0|\ket{1'}) = 1-x$.
 
 Let us assume that there is a better probabilistic scheme to make our guess.
@@ -114,3 +114,31 @@ In this case we know $x\geq 0.5$ and that the action $Y$ is $Q_? = Q_1$.
 Therefore, we have reached a contradiction as our probabilistic strategy has decayed into a greedy strategy.
 Thus, the greedy strategy must be optimal. 
 \end{proof}
+
+As we are already using an optimal strategy to select a qubit on measurement, the only other option to improve the advantage is to change the measurement basis by adjusting $\Delta$.
+
+The probability of guessing correctly is 
+\begin{align*}
+    p(correct) &= p(c=0 \text{ and } \text{ measure } \ket{0'}) + p(c=1 \text{ and } \text{ measure } \ket{1'})\\
+    &=\frac{1}{2} \cos^2 (\Delta) + \frac{1}{2}\sin^2(\Delta + \theta) 
+\end{align*}
+where $\theta$ is the angle between $Q_0$ and $Q_1$.
+
+To find the maximum of $p(correct)$ with respect to $\Delta$ we will find stationary points
+\begin{align*}
+    \frac{\partial }{\partial \Delta} = \sin (\Delta + \theta) \cos (\Delta + \theta) - \sin \Delta \cos \Delta
+\end{align*}
+Looking at the graph $p(correct)$ for any value of $0\leq\theta\leq\frac{\pi}{2}$ shows there is only 1 stationary point in the range $0\leq \Delta \leq \frac{\pi}{4}$ and that is a maximum.
+Evaluating the derivative at $\Delta = \frac{\pi}{4} - \frac{\theta}{2}$ we find:
+\begin{align*}
+    &\frac{\partial }{\partial \Delta}\Bigr\rvert_{\Delta = \frac{\pi}{4} - \frac{\theta}{2}}\\
+    =& \sin (\frac{\pi}{4} + \frac{\theta}{2} ) \cos (\frac{\pi}{4} + \frac{\theta}{2} ) - \sin(\frac{\pi}{4} - \frac{\theta}{2}) \cos(\frac{\pi}{4} - \frac{\theta}{2})\\
+    =& \frac{1}{2}\sin (\frac{\pi}{2} + \theta ) - \frac{1}{2}\sin(\frac{\pi}{2} - \theta)\\
+    =& \frac{1}{2}\cos (\theta ) - \frac{1}{2}\cos(- \theta)\\
+    =& \frac{1}{2}\cos (\theta ) - \frac{1}{2}\cos( \theta)\\
+    =& 0
+\end{align*}
+Hence $\Delta = \frac{\pi}{4} - \frac{\theta}{2}$ is the stationary point which is a maximum.
+
+In 2b we used the optimal strategy with the optimal value of $\Delta$ to get an advantage of $\Omega(|\beta|)$.
+Therefore, an advantage of $\Omega(|\beta|)$ must be optimal and cannot be improved upon.
