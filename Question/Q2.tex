@@ -1,3 +1,4 @@
+\subsection{}
 Let the player's strategy be to guess the first bit if they measure 0 and guess the second bit if they message 1.
 \begin{align*}
     P(\text{correct}) &= 1-P(\text{incorrect})\\
@@ -73,32 +74,43 @@ Hence the advantage is
 
 
 \subsection{}
-We will begin by proving the generalized strategy used in the previous questions is the optimal strategy.
-We will define $m$ as our measuring function that outputs the probability of measuring a state for a given qubit in our general orthoganal basis $\ket{\alpha}, \ket{\beta}$ 
-Let our general strategy be: If we observe the state $\ket{\alpha}$ in our measuring basis guess qubit $Q_a$ otherwise if we observe $\ket{\beta}$ guess qubit $Q_b$ where $a,b\in\{0,1\}$ and $a!=b$, and where $m(Q_a, \ket{\alpha})>m(Q_a, \ket{\beta})$.
+Firstly, we will continue the use of $\ket{0'}$ and $ket{1'}$ as basis vectors where $\ket{0'}$ is a rotation of $\ket{0}$ by $-\delta$ radians, and likewise of $\ket{1'}$ and $\ket{1}$.
+wlog $0 \leq \delta \leq \frac{\pi}{4}$.
+In the context the 2 qubits $Q_0$ and $Q_1$ allowing $\delta>\frac{\pi}{4}$ will only generate rotationally symmetrical solutions to the solution in the range $0 \leq \delta \leq \frac{\pi}{4}$.
+Therefore this restriction can be made wlog.
+Let $m$ be the measuring function that outputs the probability of measuring a state for a given qubit the basis $\ket{0'}, \ket{1'}$ 
 
-We will begin by examining what happens if we measure state $\ket{\alpha}$ on our unknown qubit $Q_?$.
-We will let $prob(Q_a|\ket{\alpha})=p$ and $prob(Q_b| \ket{\alpha})=1-p$ where $p>0.5$.
-We will use a general probabilistic scheme to make our guess of $Q_a$ or $Q_b$, choosing $Q_a$ with probability $q$ and $Q_b$ with probability $1-q$.
-Using our probabilistic selection scheme we will be correct if $Q_?=Q_a$ and we guessed $Q_a$ and if $Q_?=Q_b$ and we guessed $Q_b$.
+\begin{proof} The greedy guessing strategy used in 2a and 2b is the optimal strategy.
+Let the greedy strategy be: When we measure the unknown qubit $Q_?$, if we observe the state $\ket{0'}$ guess qubit $Q_0$ otherwise if we observe $\ket{1'}$ guess qubit $Q_1$.
+
+We will look at the cases where measuring $Q_?$ gives state $\ket{1'}$.
+The same argument can be applied to the case where $\ket{0'}$ is measured.
+Thanks to our restriction of $\delta$, we know that $m(Q_1, \ket{1'})\geq m(Q_0, \ket{1'})$ and also that $p(Q_1|\ket{1'}) \geq p(Q_0|ket{1'})$.
+Let $p(Q? = Q_1) = p(Q_1|\ket{1'}) = x$ and $p(Q? = Q_0) = p(Q_0|\ket{1'}) = 1-x$.
+
+Let us assume that there is a better probabilistic scheme to make our guess.
+We will guess $Q_1$ with probability $q$ and $Q_0$ with probability $1-q$.
+Using our probabilistic selection scheme we will be correct if $Q_?=Q_0$ and we guessed $Q_0$ and if $Q_?=Q_1$ and we guessed $Q_1$.
 
 \begin{align*}
-    prob(correct) &= pq + (1-p)(1-q)\\
-    &= pq + 1-p-q+pq\\
-    &= 2pq-p-q+1
+    p(correct) &= xq + (1-x)(1-q)\\
+    &= xq + 1-x-q+xq\\
+    &= 2xq-x-q+1
 \end{align*}
 
-We are creating an optimal guessing scheme so we consider $p$ to be a constant and look to maximised $prob(correct)$ by changing $q$.
+Our scheme will only has control over the probability of $q$, we consider $x$ to be a constant.
 
 \[
-    \arg \max_q(prob(correct)) = \begin{cases}
-        q = 0 & \text{if } p<0.5\\
-        q = 1 & \text{if } p>0.5\\
+    \arg \max_q(p(correct)) = \begin{cases}
+        q = 0 & \text{if } x<0.5\\
+        q = 1 & \text{if } x\geq 0.5\\
     \end{cases}
 \]
 
 This result is equivalent to using a greedy guessing strategy.
-If $p>0.5$ always guess for action $x$ where $prob(x)=p$, otherwise guess the other action.
-Looking at this result in the context of our problem, by definition $p>0.5$ hence we will always guess $Q_a$.
+If $x\geq 0.5$ always guess action $Y$ where $prob(Y)=x$, otherwise guess the other action.
+In this case we know $x\geq 0.5$ and that the action $Y$ is $Q_? = Q_1$.
 
-Hence our strategy is optimal...
+Therefore, we have reached a contradiction as our probabilistic strategy has decayed into a greedy strategy.
+Thus, the greedy strategy must be optimal. 
+\end{proof}
