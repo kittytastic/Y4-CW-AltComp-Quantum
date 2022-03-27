@@ -69,3 +69,36 @@ Hence the advantage is
 \[
     \text{Advantage}=\Omega(|\beta|)
 \]
+
+
+
+\subsection{}
+We will begin by proving the generalized strategy used in the previous questions is the optimal strategy.
+We will define $m$ as our measuring function that outputs the probability of measuring a state for a given qubit in our general orthoganal basis $\ket{\alpha}, \ket{\beta}$ 
+Let our general strategy be: If we observe the state $\ket{\alpha}$ in our measuring basis guess qubit $Q_a$ otherwise if we observe $\ket{\beta}$ guess qubit $Q_b$ where $a,b\in\{0,1\}$ and $a!=b$, and where $m(Q_a, \ket{\alpha})>m(Q_a, \ket{\beta})$.
+
+We will begin by examining what happens if we measure state $\ket{\alpha}$ on our unknown qubit $Q_?$.
+We will let $prob(Q_a|\ket{\alpha})=p$ and $prob(Q_b| \ket{\alpha})=1-p$ where $p>0.5$.
+We will use a general probabilistic scheme to make our guess of $Q_a$ or $Q_b$, choosing $Q_a$ with probability $q$ and $Q_b$ with probability $1-q$.
+Using our probabilistic selection scheme we will be correct if $Q_?=Q_a$ and we guessed $Q_a$ and if $Q_?=Q_b$ and we guessed $Q_b$.
+
+\begin{align*}
+    prob(correct) &= pq + (1-p)(1-q)\\
+    &= pq + 1-p-q+pq\\
+    &= 2pq-p-q+1
+\end{align*}
+
+We are creating an optimal guessing scheme so we consider $p$ to be a constant and look to maximised $prob(correct)$ by changing $q$.
+
+\[
+    \arg \max_q(prob(correct)) = \begin{cases}
+        q = 0 & \text{if } p<0.5\\
+        q = 1 & \text{if } p>0.5\\
+    \end{cases}
+\]
+
+This result is equivalent to using a greedy guessing strategy.
+If $p>0.5$ always guess for action $x$ where $prob(x)=p$, otherwise guess the other action.
+Looking at this result in the context of our problem, by definition $p>0.5$ hence we will always guess $Q_a$.
+
+Hence our strategy is optimal...
