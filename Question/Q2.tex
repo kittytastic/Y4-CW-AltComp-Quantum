@@ -13,7 +13,8 @@ Therefore their advantage is
 
 \subsection{}
 We will call the first bit $Q_0$ and the second bit $Q_1$
-Let us offset our measuring basis by $-\frac{\pi}{4}$, we will use $\ket{0'},\ket{1'}$ as new basis vectors where $\ket{0'}$ is the rotation of the $\ket{0}$ basis and likewise for $\ket{1}$.
+Let $\theta$ be the angle between $Q_0$ and $Q_1$, hence $|\beta|=\sin \theta$ and $|\alpha|= \cos \theta$
+Let us offset our measuring basis by $-(\frac{\pi}{4}-\frac{\theta}{2})$, we will use $\ket{0'},\ket{1'}$ as new basis vectors where $\ket{0'}$ is the rotation of the $\ket{0}$ basis and likewise for $\ket{1}$.
 Let $m$ be the measuring function that returns the probability of measuring a qubit in a given state in our new basis.
 
 \begin{center}
@@ -24,28 +25,24 @@ Let $m$ be the measuring function that returns the probability of measuring a qu
     \toprule
 Qubit& State&$m(\text{Qubit}, \text{ State})$\\
 \midrule
-\addlinespace[2ex]$Q_0$&$\ket{0'}$&$\begin{aligned}\phantom{ }&\cos^2(\frac{\pi}{4})\\=&\frac{q}{2}\end{aligned}$\\
-\specialrule{0.5pt}{1ex}{1ex}
-$Q_0$&$\ket{1'}$&$\begin{aligned}\phantom{ }&\sin^2(\frac{\pi}{4})\\=&\frac{q}{2}\end{aligned}$\\
-\specialrule{0.5pt}{1ex}{1ex}
-$Q_1$&$\ket{0'}$&$
+\addlinespace[2ex]$Q_0$&$\ket{0'}$&$
     \begin{aligned}
-        \phantom{ }&\cos^2(\frac{\pi}{4}+\theta)\\
-        =&(\cos(\frac{\pi}{4})\cos\theta-\sin(\frac{\pi}{4})\sin\theta)^2\\
-        =&\frac{1}{2}(\cos\theta -\sin\theta)^2\\
-        =&\frac{1}{2}(\cos^2\theta + \sin^2\theta - 2\cos\theta \sin\theta)\\
-        =&\frac{1}{2}(1 - 2\cos\theta \sin\theta)\\
-        =&\frac{1}{2} - \cos\theta \sin\theta
+        \phantom{ }&\cos^2(\frac{\pi}{4}-\frac{\theta}{2})\\
+        =&\frac{1}{2}(2\cos^2(\frac{\pi}{4}-\frac{\theta}{2})-1+1)\\
+        =&\frac{1}{2}(\cos(\frac{\pi}{2}-\theta)+ 1)\\
+        =&\frac{1}{2}(\cos(\frac{\pi}{2})\cos(\theta)+\sin(\frac{\pi}{2})\sin(\theta) +1)\\
+        =&\frac{1}{2}(\sin(\theta)  +1)\\
     \end{aligned}$\\
 \specialrule{0.5pt}{1ex}{1ex}
     $Q_1$&$\ket{1'}$&$
     \begin{aligned}
-        \phantom{ }&\sin^2(\frac{\pi}{4}+\theta)\\
-        =&(\sin(\frac{\pi}{4})\cos\theta+\cos(\frac{\pi}{4})\sin\theta)^2\\
-        =&\frac{1}{2}(\cos\theta +\sin\theta)^2\\
-        =&\frac{1}{2}(\cos^2\theta + \sin^2\theta + 2\cos\theta \sin\theta)\\
-        =&\frac{1}{2}(1 + 2\cos\theta \sin\theta)\\
-        =&\frac{1}{2} + \cos\theta \sin\theta
+        \phantom{ }&\sin^2(\frac{\pi}{4}-\frac{\theta}{2}+\theta)\\
+        =&\sin^2(\frac{\pi}{4}+\frac{\theta}{2})\\
+        =&\frac{-1}{2}(-1+1-2\sin^2(\frac{\pi}{4}+\frac{\theta}{2}))\\
+        =&\frac{-1}{2}(-1+\cos(\frac{\pi}{2}+\theta))\\
+        =&\frac{-1}{2}(-1+\cos(\frac{\pi}{2})\cos(\theta)-\sin(\frac{\pi}{2})\sin(\theta))\\
+        =&\frac{-1}{2}(-1-\sin(\theta))\\
+        =&\frac{1}{2}(\sin(\theta)+1)\\
     \end{aligned}$\\
     \bottomrule
 \end{tabular}
@@ -56,19 +53,15 @@ Our player will guess $Q_0$ if they measure a $\ket{0'}$ and guess $Q_1$ if they
 
 \begin{align*}
     p(\text{correct}) &= \frac{1}{2} m(Q_0, \ket{0'}) + \frac{1}{2} m(Q_1, \ket{1'})\\
-     &= \frac{1}{2}\cdot \frac{1}{2} + \frac{1}{2} (\frac{1}{2} \cos\theta \sin\theta)\\
-     &= \frac{1}{2} + \frac{1}{2} \cos\theta \sin\theta\\
-     &= \frac{1}{2} + \frac{1}{2} |\alpha| |\beta|\\
-     &= \frac{1}{2} + \frac{1}{2} \sqrt{1-|\beta|^2} |\beta|\\
-     &= \frac{1}{2} + \frac{1}{2} \sqrt{|\beta|^2-|\beta|^4}\\
-     &= \frac{1}{2} + \frac{1}{2} \Omega(\sqrt{\frac{|\beta|^2}{4}})\\
-     &= \frac{1}{2} + \frac{1}{2} \Omega(|\beta|)\\
-     &= \frac{1}{2} + \Omega(|\beta|)\\
+     &= \frac{1}{2}\cdot \frac{1}{2}(\sin(\theta)  +1) + \frac{1}{2} \cdot \frac{1}{2}(\sin(\theta)+1)\\
+     &= \frac{1}{2}(\sin(\theta)  +1) \\
+     &= \frac{1}{2} + \frac{1}{2}\sin(\theta) \\
+     &= \frac{1}{2} + \frac{|\beta|}{2} \\
 \end{align*}
 
 Hence the advantage is
 \[
-    \text{Advantage}=\Omega(|\beta|)
+    \frac{|\beta|}{2}=\Omega(|\beta|)
 \]
 
 
