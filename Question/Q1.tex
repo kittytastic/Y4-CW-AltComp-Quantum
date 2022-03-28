@@ -1,11 +1,9 @@
 \subsection{Base Proof}
-Assume there is a unitary transform $U$ that can clone an arbitrary bit $\psi$, i.e.
+Assume there is a unitary transform $U$ that can clone an arbitrary qubit $\psi$, i.e.
 \begin{equation}\label{eq:def}
 \ket{\psi}^{\otimes n} \otimes \ket{0} \xrightarrow{U} \ket{\psi}^{\otimes n+1}
 \end{equation}
-
 We know that for classical bits it must be the case that:
-
 \begin{align}
     \ket{0}^{\otimes n} \otimes \ket{0} &\xrightarrow{U} \ket{0}^{\otimes n+1}\\
     =\ket{0^n0} &\xrightarrow{U} \ket{0^ {n+1}} \label{eq:lin_aa}
@@ -14,7 +12,6 @@ We know that for classical bits it must be the case that:
     \ket{1}^{\otimes n} \otimes \ket{0} &\xrightarrow{U} \ket{1}^{\otimes n+1}\\
     =\ket{1^n0} &\xrightarrow{U} \ket{1^ {n+1}} \label{eq:lin_ba}
 \end{align}
-
 We can then reduce Equation \ref{eq:def} as follows
 \begin{align*}
     \ket{\psi}^{\otimes n} \otimes \ket{0} &\xrightarrow{U} \ket{\psi}^{\otimes n+1}\\

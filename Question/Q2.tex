@@ -1,5 +1,5 @@
 \subsection{}
-Let the player's strategy be to guess the first bit if they measure 0 and guess the second bit if they message 1.
+Let the player's strategy be to guess the first bit if they measure $\ket{0}$ and guess the second bit if they measure $\ket{1}$.
 \begin{align*}
     P(\text{correct}) &= 1-P(\text{incorrect})\\
         &= 1-(\frac{1}{2}(1-|\beta|^2))\\
@@ -13,8 +13,8 @@ Therefore their advantage is
 
 \subsection{}
 We will call the first bit $Q_0$ and the second bit $Q_1$
-Let $\theta$ be the angle between $Q_0$ and $Q_1$, hence $|\beta|=\sin \theta$ and $|\alpha|= \cos \theta$
-Let us offset our measuring basis by $-(\frac{\pi}{4}-\frac{\theta}{2})$, we will use $\ket{0'},\ket{1'}$ as new basis vectors where $\ket{0'}$ is the rotation of the $\ket{0}$ basis and likewise for $\ket{1}$.
+Let $\theta$ be the angle between $Q_0$ and $Q_1$, hence $|\beta|=\sin \theta$ and $|\alpha|= \cos \theta$.
+Let us offset our measuring basis by $-(\frac{\pi}{4}-\frac{\theta}{2})$, we will use $\ket{0'},\ket{1'}$ as new basis vectors where $\ket{0'}$ is the rotation of the $\ket{0}$ basis and likewise for $\ket{1'}$.
 Let $m$ be the measuring function that returns the probability of measuring a qubit in a given state in our new basis.
 
 \begin{center}
@@ -67,7 +67,7 @@ Hence the advantage is
 
 
 \subsection{}
-Firstly, we will continue the use of $\ket{0'}$ and $ket{1'}$ as basis vectors where $\ket{0'}$ is a rotation of $\ket{0}$ by $-\delta$ radians, and likewise of $\ket{1'}$ and $\ket{1}$.
+Firstly, we will continue the use of $\ket{0'}$ and $\ket{1'}$ as basis vectors where $\ket{0'}$ is a rotation of $\ket{0}$ by $-\Delta$ radians, and likewise of $\ket{1'}$ and $\ket{1}$.
 wlog $0 \leq \Delta \leq \frac{\pi}{4}$.
 In the context the 2 qubits $Q_0$ and $Q_1$ allowing $\Delta>\frac{\pi}{4}$ will only generate rotationally symmetrical solutions to the solution in the range $0 \leq \Delta \leq \frac{\pi}{4}$.
 Therefore this restriction can be made wlog.
@@ -78,10 +78,10 @@ Let the greedy strategy be: When we measure the unknown qubit $Q_?$, if we obser
 
 We will look at the cases where measuring $Q_?$ gives state $\ket{1'}$.
 The same argument can be applied to the case where $\ket{0'}$ is measured.
-Thanks to our restriction of $\Delta$, we know that $m(Q_1, \ket{1'})\geq m(Q_0, \ket{1'})$ and also that $p(Q_1|\ket{1'}) \geq p(Q_0|ket{1'})$.
+Thanks to our restriction of $\Delta$, we know that $m(Q_1, \ket{1'})\geq m(Q_0, \ket{1'})$ and also that $p(Q_1|\ket{1'}) \geq p(Q_0|\ket{1'})$.
 Let $p(Q? = Q_1) = p(Q_1|\ket{1'}) = x$ and $p(Q? = Q_0) = p(Q_0|\ket{1'}) = 1-x$.
 
-Let us assume that there is a better probabilistic scheme to make our guess.
+Let us assume that there is a better probabilistic scheme to make our guess after measuring $\ket{1'}$.
 We will guess $Q_1$ with probability $q$ and $Q_0$ with probability $1-q$.
 Using our probabilistic selection scheme we will be correct if $Q_?=Q_0$ and we guessed $Q_0$ and if $Q_?=Q_1$ and we guessed $Q_1$.
 
@@ -91,7 +91,7 @@ Using our probabilistic selection scheme we will be correct if $Q_?=Q_0$ and we 
     &= 2xq-x-q+1
 \end{align*}
 
-Our scheme will only has control over the probability of $q$, we consider $x$ to be a constant.
+Our scheme only has control over the probability of $q$, we consider $x$ to be a constant.
 
 \[
     \arg \max_q(p(correct)) = \begin{cases}
@@ -101,16 +101,16 @@ Our scheme will only has control over the probability of $q$, we consider $x$ to
 \]
 
 This result is equivalent to using a greedy guessing strategy.
-If $x\geq 0.5$ always guess action $Y$ where $prob(Y)=x$, otherwise guess the other action.
+If $x\geq 0.5$ always guess action $Y$ where $p(Y)=x$, otherwise guess the other action.
 In this case we know $x\geq 0.5$ and that the action $Y$ is $Q_? = Q_1$.
 
 Therefore, we have reached a contradiction as our probabilistic strategy has decayed into a greedy strategy.
 Thus, the greedy strategy must be optimal. 
 \end{proof}
 
-As we are already using an optimal strategy to select a qubit on measurement, the only other option to improve the advantage is to change the measurement basis by adjusting $\Delta$.
+As we are already using an optimal strategy to select a qubit after measurement, the only other option to improve the advantage is to change the measurement basis by adjusting $\Delta$.
 
-The probability of guessing correctly is 
+The probability of guessing the correct qubit is 
 \begin{align*}
     p(correct) &= p(c=0 \text{ and } \text{ measure } \ket{0'}) + p(c=1 \text{ and } \text{ measure } \ket{1'})\\
     &=\frac{1}{2} \cos^2 (\Delta) + \frac{1}{2}\sin^2(\Delta + \theta) 
@@ -132,6 +132,7 @@ Evaluating the derivative at $\Delta = \frac{\pi}{4} - \frac{\theta}{2}$ we find
     =& 0
 \end{align*}
 Hence $\Delta = \frac{\pi}{4} - \frac{\theta}{2}$ is the stationary point which is a maximum.
+And $\Delta = \frac{\pi}{4} - \frac{\theta}{2}$ is the optimal value for $\Delta$.
 
 In 2b we used the optimal strategy with the optimal value of $\Delta$ to get an advantage of $\Omega(|\beta|)$.
 Therefore, an advantage of $\Omega(|\beta|)$ must be optimal and cannot be improved upon.
